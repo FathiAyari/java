@@ -152,6 +152,71 @@ public class Main {
         int result6=customOperation1.apply(num1,num2);
         System.out.println(result5);
         System.out.println(result6);
+// il faut faire un programme
+int xx = 5;
+calculatrorEX2 c=new calculatrorEX2();
+        /*int numberr =5;
+        IntToDoubleFunction<Integer> test= number -> number;
+        double xxxx= test.apply(numberr);
+        System.out.println(xxxx);*/
+        // Exercice calculatrice
+        System.out.println("donne moi le premier num");
+        int numberone=s.nextInt();
+        System.out.println("donne moi le deuxieme num");
+        int numbertwo=s.nextInt();
+        System.out.println("choisir une opération , 1+,  2*,  3-,  4/,  5carré,  6racine carré, 7+*/,  8carré*carré");
+        int choix = s.nextInt();
+        switch (choix){
+            case 1 :
+                BinaryOperator <Integer,Integer,Integer> operation= (numtest1,numtest2) -> numtest1+numtest2;
+                int resultat=operation.execute(numberone,numbertwo);
+                System.out.println(resultat);
+                break;
+            case 2 :
+                BinaryOperator<Integer,Integer,Integer> operation1=(numtest1,numtest2) -> numtest1*numtest2;
+                int resultat1=operation1.execute(numberone,numbertwo);
+                System.out.println(resultat1);
+                break;
+            case 3 :
+                BinaryOperator<Integer,Integer,Integer> operation2=(numtest1,numtest2) -> numtest1-numtest2;
+                int resultat2=operation2.execute(numberone,numbertwo);
+                System.out.println(resultat2);
+                break;
+            case 4 :
+                BiFunction<Integer,Integer,Double> operation3 = (numtest1,numtest2)-> (double) (numtest1/numtest2);
+                double resultat3=operation3.apply(numberone,numbertwo);
+                System.out.println(resultat3);
+                break;
+            case 5:
+                UnaryOperator<Double> operation4= numtest1 -> Math.pow((double) numtest1,2);
+                double resultat4=operation4.execute((double)numberone);
+                System.out.println(resultat4);
+                break;
+            case 6:
+                UnaryOperator<Double> operation5= numtest1 -> Math.sqrt((double) numtest1);
+                double resultat5=operation5.execute((double)numberone);
+                System.out.println(resultat5);
+                break;
+            case 7:
+                BiFunction<Integer,Integer,Double> operation6= (numtest1,numtest2) -> (double)numtest1+numtest2*numtest1/numtest2;
+                double resultat6= operation6.apply(numberone,numbertwo);
+                System.out.println(resultat6);
+                break;
+            case 8:
+                BinaryOperator<Double,Double,Double> operation7= (numtest1,numtest2) -> (double)(Math.pow(numtest1,2)*Math.pow(numtest2,2));
+                double resultat7= operation7.execute((double)numberone,(double)numbertwo);
+                System.out.println(resultat7);
+                break;
+            default:
+                System.out.println("saisie invalide");
+        }
+        //FIN DE L'EXERCIE
+
+
+
+
+
+
 
 
 
