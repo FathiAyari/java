@@ -1,6 +1,14 @@
 public class calculatrorEX2 {
 
 
+    public static int sommetableau(int tab[]){
+        int max=tab[0];
+        for (int i:tab){
+           if (i>max)
+               max=i;
+        }
+        return max;
+    }
 }
 // cette interface UnaryOperator<T> à pour role faire une opération sur un seul élement et retourne cette élement
 interface UnaryOperator<T>{
@@ -22,5 +30,7 @@ pour effectuer des opérations sur des collections de données. Elles offrent un
  de représenter des opérations sur deux arguments tout en profitant de la vérification des types et
  de la concision du code offertes par les lambdas en Java.
  */
+
+
 
 

@@ -154,18 +154,18 @@ public class Main {
         System.out.println(result6);
 // il faut faire un programme
 int xx = 5;
-calculatrorEX2 c=new calculatrorEX2();
+//calculatrorEX2 c=new calculatrorEX2();
         /*int numberr =5;
         IntToDoubleFunction<Integer> test= number -> number;
         double xxxx= test.apply(numberr);
         System.out.println(xxxx);*/
         // Exercice calculatrice
-        System.out.println("donne moi le premier num");
+        /*System.out.println("donne moi le premier num");
         int numberone=s.nextInt();
         System.out.println("donne moi le deuxieme num");
-        int numbertwo=s.nextInt();
-        System.out.println("choisir une opération , 1+,  2*,  3-,  4/,  5carré,  6racine carré, 7+*/,  8carré*carré");
-        int choix = s.nextInt();
+        int numbertwo=s.nextInt();*/
+       //System.out.println("choisir une opération , 1+,  2*,  3-,  4/,  5carré,  6racine carré, 7+*/,  8carré*carré");
+       /* int choix = s.nextInt();
         switch (choix){
             case 1 :
                 BinaryOperator <Integer,Integer,Integer> operation= (numtest1,numtest2) -> numtest1+numtest2;
@@ -209,8 +209,92 @@ calculatrorEX2 c=new calculatrorEX2();
                 break;
             default:
                 System.out.println("saisie invalide");
-        }
+        }*/
         //FIN DE L'EXERCIE
+
+        //ARRAYS : les tableaux uni et multidimentionelles
+
+/*
+Advantages
+Code Optimization: It makes the code optimized, we can retrieve or sort the data efficiently.
+Random access: We can get any data located at an index position.
+Disadvantages
+Size Limit: We can store only the fixed size of elements in the array. It doesn't grow its size at runtime.
+To solve this problem, collection framework is used in Java which grows automatically.
+
+ */
+        // les tableau unidimentionelles
+int[] a= new int [5];// declaration et instantiation  du tableau
+        a[0]=5;
+        a[1]=3;
+        a[2]=4;
+        a[3]=5;
+        a[4]=6;
+        for (int i:a){
+            System.out.println(i);
+        }
+        // ou bien
+        for (int j=0;j<a.length;j++){
+            System.out.println(a[j]);
+        }
+
+        int tab[]= {3,4,4,6}; // declaration,instatiation et initialisation du tableau
+
+        for (int i:tab){
+            System.out.println(i);
+        }
+int ress= calculatrorEX2.sommetableau(tab);
+        System.out.println(ress);
+        // on peut passer aussi un anonymous array à une méthode
+        int resss=calculatrorEX2.sommetableau(new int []{2,3,5,100});
+        System.out.println(resss);
+
+
+// si on a par exemple un array de taille 5 , et on veut parcourir la case 6
+        // ArrayIndexOutOfBoundsException va etre declanché
+
+        // les tableau multidimentionelles
+        int [][]tab1= new int[2][2];// declaration and instantiation
+        int [][] tab2 ={{4,4},{4,4}};// declaration and instantiation and initialisation
+       for (int i=0;i<tab2.length;i++){
+           for (int j=0;j< tab2.length;j++){
+               System.out.println(tab2[i][j]);
+           }
+       }
+
+       //Exemple pour un tableau irrégulier
+        int [][]tabirr= new int[3][];
+       tabirr[0]=new int [2];
+       tabirr[1]= new int [1];
+       tabirr[2]= new int [3];
+       // remplissage du tableau
+        for (int i=0;i<tabirr.length;i++){
+            for (int j=0;j< tabirr[i].length;j++){
+                tabirr[i][j]=1;
+            }
+        }
+        // affichage du matrice avec boucle for each
+        for (int[] ligne : tabirr){
+            for (int contenu:ligne){
+                System.out.print(contenu);
+            }
+            System.out.println();
+        }
+// savoir le class name d'un array
+
+        Class c= tab.getClass();
+        System.out.println(c);
+        String namec=c.getName();
+        System.out.println(namec);
+
+        // pour copier d'un array à un autre voici le syntaxe
+        // Object src, int srcPos,Object dest, int destPos, int length
+        //System.arraycopy(copyFrom, 2, copyTo, 0, 7);
+        // fait la somme et la multiplication de deux matrice comme exercice d'application
+
+
+
+
 
 
 
