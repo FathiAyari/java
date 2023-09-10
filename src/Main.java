@@ -1,4 +1,13 @@
+import java.time.Year;
+
 public class Main {
+    // Functions
+    void myFirstMethod(int x ){
+        System.out.println("here is the value of X"+x);
+    }
+    public int myAge(long dateOfBirth){
+        return (int) (Year.now().getValue()-dateOfBirth);
+    }
     public static void main(String[] args) {
 
     // 1)Data Types
