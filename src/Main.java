@@ -822,7 +822,7 @@ numbers.forEach(e-> System.out.println(e));*/
         Utilisez la méthode toArray en spécifiant
         le type souhaité pour le tableau résultant. Assurez-vous que le tableau renvoyé est du type spécifié.
 
-         */
+
         CopyOnWriteArrayList<Object> numbers= new CopyOnWriteArrayList<>();
         numbers.addIfAbsent(4);
         numbers.addIfAbsent(2);
@@ -832,7 +832,108 @@ numbers.forEach(e-> System.out.println(e));*/
         String[] stringArray = numbers.toArray(new String[0]);
         for (String item : stringArray) {
             System.out.println(item);
-        }
+        } */
+
+        //------------------------------------------------------------------------------------------
+        // Programme gestion d'une bibliothèque ----------------------------------------------------
+        Scanner scanner= new Scanner(System.in);
+
+        Library library= new Library();
+
+        int number=0;
+       do{
+            System.out.println("-----------------Menu----------------------------");
+            System.out.println("1: Ajouter un livre");
+            System.out.println("2: Emprunter un livre");
+            System.out.println("3: Retourner un livre");
+            System.out.println("4: Chercher un livre par Titre");
+            System.out.println("5: Chercher un livre par Auteur");
+            System.out.println("6: Afficher la liste des livres disponible");
+            System.out.println("7: Afficher la liste des livres emprunter");
+            System.out.println("choisir une option");
+            int choix= scanner.nextInt();
+            switch (choix){
+                case 1:
+                    Book book= new Book();
+                    System.out.println("donne moi le titre du livre");
+                    book.Titre= scanner.next();
+                    System.out.println("donne moi l'auteur du livre");
+                    book.Auteur= scanner.nextLine();
+
+                    System.out.println("donne moi le Isbn du livre");
+                    book.Isbn= scanner.next();
+                    book.Status=true;
+                    library.addBook(book);
+                    System.out.println("voulez vous afficher le menu, si oui tapez 0");
+                   number= scanner.nextInt();
+                    break;
+                case 2:
+                    System.out.println("donne moi le ISBN du livre à emprunter");
+                    String isbn= scanner.nextLine();
+                    library.borrowBook(isbn);
+                    System.out.println("voulez vous afficher le menu, si oui tapez 0");
+                    number= scanner.nextInt();
+                    break;
+                case 3:
+                    System.out.println("donne moi le ISBN du livre à emprunter");
+                    String isbn1= scanner.nextLine();
+                    library.returnBook(isbn1);
+                    System.out.println("voulez vous afficher le menu, si oui tapez 0");
+                    number= scanner.nextInt();
+                    break;
+                case 4:
+                    LinkedList<Book> templinkedlist= new LinkedList<>();
+                    System.out.println("donne moi le titre du livre à emprunter");
+                    String titre= scanner.nextLine();
+                    templinkedlist=library.searchByTitle(titre);
+                    if (templinkedlist.isEmpty()){
+                        System.out.println("livre introuvable");
+                    }else{
+                        templinkedlist.forEach(e -> {
+                            System.out.print(e.Titre);
+                            System.out.print(e.Auteur);
+                            System.out.print(e.Isbn);
+                            System.out.println();
+                        });
+                    }
+                    System.out.println("voulez vous afficher le menu, si oui tapez 0");
+                    number= scanner.nextInt();
+                    break;
+                case 5:
+                    LinkedList<Book> templinkedlist1= new LinkedList<>();
+                    System.out.println("donne moi l'auteur du livre à emprunter");
+                    String auteur= scanner.nextLine();
+                    templinkedlist=library.searchByAutor(auteur);
+                    if (templinkedlist1.isEmpty()){
+                        System.out.println("livre introuvable");
+                    }else{
+                        templinkedlist1.forEach(e -> {
+                            System.out.print(e.Titre);
+                            System.out.print(e.Auteur);
+                            System.out.print(e.Isbn);
+                            System.out.println();
+                        });
+                    }
+                    System.out.println("voulez vous afficher le menu, si oui tapez 0");
+                    number= scanner.nextInt();
+                    break;
+                case 6:
+                    library.listAvailableBooks();
+                    System.out.println("voulez vous afficher le menu, si oui tapez 0");
+                    number= scanner.nextInt();
+                    break;
+                case 7:
+                    library.listBorrowedBooks();
+                    System.out.println("voulez vous afficher le menu, si oui tapez 0");
+                    number= scanner.nextInt();
+                    break;
+
+            }
+        }while(number==0);
+
+
+
+
     }
 
 
