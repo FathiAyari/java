@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
 
-    //Data Types
+    // 1)Data Types
     //Primitive data type :
     // Bytes :  8-bit integer from -128 to 127
      byte myByteVariable=2;
@@ -28,8 +28,21 @@ public class Main {
      // arrays
      int [] codes=new int [5];
 
-
-
+    // 2) Conditionals
+        // If else  statements
+        if (codes.length!=0){}else if(codes.length==3){}else {}
+        // switch statement
+        switch(myCharVariable){
+            case 'A':
+                System.out.println("It A");
+                break;
+            case 'B' :
+                System.out.println("It's B");break;
+            default:
+                System.out.println("None");
+        }
+        // Ternary Operator
+        System.out.println(myCharVariable=='A'?"It's A here ":"It's not A");
 
 
 
