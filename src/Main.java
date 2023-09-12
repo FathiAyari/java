@@ -1,7 +1,8 @@
 import java.time.Year;
 
 public class Main {
-    // Functions
+    /************************************ Functions ****************************************/
+
     void myFirstMethod(int x ){
         System.out.println("here is the value of X"+x);
     }
@@ -10,7 +11,7 @@ public class Main {
     }
     public static void main(String[] args) {
 
-    // 1)Data Types
+    /************************************ Data Types ****************************************/
     //Primitive data type :
     // Bytes :  8-bit integer from -128 to 127
      byte myByteVariable=2;
@@ -25,7 +26,8 @@ public class Main {
      //double is a 64-bit floating-point data type
      double myDoubleVariable=3;
      char myCharVariable='c';
-     //Reference Data Types:
+
+     /************************************ Reference Data Types ****************************************/
      // Classes
      class  myFirstClass{}
      // Interfaces()
@@ -37,7 +39,7 @@ public class Main {
      // arrays
      int [] codes=new int [5];
 
-    // 2) Conditionals
+     /************************************ Conditionals ****************************************/
         // If else  statements
         if (codes.length!=0){}else if(codes.length==3){}else {}
         // switch statement
@@ -54,8 +56,41 @@ public class Main {
         System.out.println(myCharVariable=='A'?"It's A here ":"It's not A");
 
 
+    /************************************ Loops ****************************************/
+    // For loop
+        for (int i = 0; i < 5; i++) {
+            // Code to be executed repeatedly
+        }
+        // while loop
+        int i = 0;
+        while (i < 5) {
+            // Code to be executed repeatedly
+            i++;
+        }
 
+        // do while loop
 
+        int j = 0;
+        do {
+            // Code to be executed repeatedly
+            j++;
+        } while (j < 5);
+
+        // for each loop
+        int[] numbers = {1, 2, 3, 4, 5};
+        for (int num : numbers) {
+            // Code to be executed for each element in the array
+        }
+        // Break and Continue Statements
+        for (int k = 0; k < 10; k++) {
+            if (k == 3) {
+                break; // Exit the loop when i equals 3
+            }
+            if (k == 5) {
+                continue; // Skip the iteration when i equals 5
+            }
+            // Code to be executed
+        }
 
     }
 
