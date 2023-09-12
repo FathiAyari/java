@@ -3,6 +3,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Library {
+    /*
     ArrayList<Book> livresDispo= new ArrayList<>();
     LinkedList<Book> livresEmp= new LinkedList<>();
     public void addBook (Book book){
@@ -82,4 +83,6 @@ public class Library {
 
         });
     }
+
+     */
 }

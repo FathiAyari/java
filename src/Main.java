@@ -4,7 +4,9 @@ import java.sql.SQLOutput;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.Consumer;
 import java.util.function.IntBinaryOperator;
+import java.util.stream.Collectors;
 import javax.management.Attribute;
 public class Main {
 
@@ -836,6 +838,7 @@ numbers.forEach(e-> System.out.println(e));*/
 
         //------------------------------------------------------------------------------------------
         // Programme gestion d'une bibliothèque ----------------------------------------------------
+        /*
         Scanner scanner= new Scanner(System.in);
 
         Library library= new Library();
@@ -931,8 +934,99 @@ numbers.forEach(e-> System.out.println(e));*/
             }
         }while(number==0);
 
+*/
+        // Des exercices d'application pour un HashSet:
+        /*
+        add(E e): Créez un HashSet de chaînes de caractères et ajoutez-y quelques noms.
+
+        HashSet<Book> names =  new HashSet<>();
+
+        names.add(new Book("les singes"));
+        //names.forEach(e -> System.out.println(e.hashCode()));
+        names.forEach(e -> {
+            if (e.Titre.equals("les singes"))
+                System.out.println(e);
+        });*/
+        /*
+        addAll(Collection<? extends E> c) : Créez deux HashSet,
+        l'un avec des éléments et l'autre avec une collection d'éléments, puis utilisez addAll pour
+         ajouter tous les éléments de la deuxième HashSet au premier.
+*/
+        Set<Integer> hashset1 = new HashSet<>();
+        Set<Integer> hashset2 = new HashSet<>();
+        for (int i = 2; i<6;i++){
+            hashset1.add(i);
+            hashset2.add(i);
+        }
+        hashset2.add(6);
+        hashset2.add(7);
+        hashset2.add(8);
+
+        hashset1.forEach(e -> {
+            System.out.println(e);
 
 
+        });
+
+        hashset2.forEach(e -> {
+            System.out.println(e);
+
+
+        });
+        System.out.println("----------");
+        //hashset2.removeAll(hashset1);
+        hashset1.retainAll(hashset2);
+        hashset1.forEach(e -> {
+            System.out.println(e);
+
+
+        });
+        Object[] objectArray = hashset1.toArray();
+        for( Object item : objectArray){
+            System.out.print(item);
+        }
+        System.out.println(hashset1.contains(hashset2));
+        System.out.println(hashset2.contains(hashset1));
+        Spliterator<Integer> spliterator= hashset1.spliterator() ;
+        spliterator.forEachRemaining( e -> System.out.println(e));
+        hashset1.removeIf(e -> e%2==0);
+        System.out.println("----------");
+        System.out.println("----------");
+        Spliterator<Integer> spliterator1= hashset1.spliterator() ;
+        spliterator1.forEachRemaining( e -> System.out.println(e));
+        System.out.println("----------");
+        System.out.println("----------");
+       Set <Integer> newSet= hashset1.stream().map(e ->
+             e*2)
+        .collect(Collectors.toSet());
+        newSet.forEach(e -> System.out.println(e));
+        Set <Integer> newset2= newSet.stream().filter( e -> e%5==0).collect(Collectors.toSet());
+        newset2.forEach(e -> System.out.println(e));
+        UnaryOperator<Integer> unaryOperator= e -> e%2;
+        Set <Integer> newSet3 = newSet.stream().map(unaryOperator::execute).collect(Collectors.toSet());
+        System.out.println("----------");
+        // parallelStream pour effecruer deux taches en parallele
+        Set<Integer> sett= new HashSet<>();
+        sett.add(3);
+        sett.add(4);
+        sett.forEach(e-> System.out.println(e));
+        sett.parallelStream().map(e -> e*2).forEach(e -> System.out.println(e));
+        /* System.out.println("----------");
+        hashset1.addAll(hashset2);
+        hashset1.remove(3);
+        Iterator <Integer> iterator= hashset1.iterator();
+
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+        System.out.println(hashset1.contains(2));
+ hashset1.clear();
+        System.out.println(hashset1.isEmpty());
+        System.out.println(hashset2.size());
+        hashset1.forEach(e -> System.out.println(e));
+
+
+*/
 
     }
 
