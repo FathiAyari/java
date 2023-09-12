@@ -954,7 +954,7 @@ numbers.forEach(e-> System.out.println(e));*/
 */
         Set<Integer> hashset1 = new HashSet<>();
         Set<Integer> hashset2 = new HashSet<>();
-        for (int i = 2; i<6;i++){
+        for (int i = 2; i < 6; i++) {
             hashset1.add(i);
             hashset2.add(i);
         }
@@ -982,35 +982,35 @@ numbers.forEach(e-> System.out.println(e));*/
 
         });
         Object[] objectArray = hashset1.toArray();
-        for( Object item : objectArray){
+        for (Object item : objectArray) {
             System.out.print(item);
         }
         System.out.println(hashset1.contains(hashset2));
         System.out.println(hashset2.contains(hashset1));
-        Spliterator<Integer> spliterator= hashset1.spliterator() ;
-        spliterator.forEachRemaining( e -> System.out.println(e));
-        hashset1.removeIf(e -> e%2==0);
+        Spliterator<Integer> spliterator = hashset1.spliterator();
+        spliterator.forEachRemaining(e -> System.out.println(e));
+        hashset1.removeIf(e -> e % 2 == 0);
         System.out.println("----------");
         System.out.println("----------");
-        Spliterator<Integer> spliterator1= hashset1.spliterator() ;
-        spliterator1.forEachRemaining( e -> System.out.println(e));
+        Spliterator<Integer> spliterator1 = hashset1.spliterator();
+        spliterator1.forEachRemaining(e -> System.out.println(e));
         System.out.println("----------");
         System.out.println("----------");
-       Set <Integer> newSet= hashset1.stream().map(e ->
-             e*2)
-        .collect(Collectors.toSet());
+        Set<Integer> newSet = hashset1.stream().map(e ->
+                        e * 2)
+                .collect(Collectors.toSet());
         newSet.forEach(e -> System.out.println(e));
-        Set <Integer> newset2= newSet.stream().filter( e -> e%5==0).collect(Collectors.toSet());
+        Set<Integer> newset2 = newSet.stream().filter(e -> e % 5 == 0).collect(Collectors.toSet());
         newset2.forEach(e -> System.out.println(e));
-        UnaryOperator<Integer> unaryOperator= e -> e%2;
-        Set <Integer> newSet3 = newSet.stream().map(unaryOperator::execute).collect(Collectors.toSet());
+        UnaryOperator<Integer> unaryOperator = e -> e % 2;
+        Set<Integer> newSet3 = newSet.stream().map(unaryOperator::execute).collect(Collectors.toSet());
         System.out.println("----------");
         // parallelStream pour effecruer deux taches en parallele
-        Set<Integer> sett= new HashSet<>();
+        Set<Integer> sett = new HashSet<>();
         sett.add(3);
         sett.add(4);
-        sett.forEach(e-> System.out.println(e));
-        sett.parallelStream().map(e -> e*2).forEach(e -> System.out.println(e));
+        sett.forEach(e -> System.out.println(e));
+        sett.parallelStream().map(e -> e * 2).forEach(e -> System.out.println(e));
         /* System.out.println("----------");
         hashset1.addAll(hashset2);
         hashset1.remove(3);
@@ -1027,6 +1027,48 @@ numbers.forEach(e-> System.out.println(e));*/
 
 
 */
+        // Des exercices d'application sur LinkedHashSet:
+        LinkedHashSet<Object> linkedhashset = new LinkedHashSet<>();
+        linkedhashset.add("Mohamed");
+        linkedhashset.add("Mohamed");
+        /*
+        Spliterator c'est pour l'itération du collection en parallele
+        la collection peut etre découper en sous collections pour la rapidité du parcours et de faire
+        le travail
+         */
+        Spliterator<Object> spl = linkedhashset.spliterator();
+        spl.forEachRemaining(e -> System.out.println(e));
+        Iterator<Object> iterator = linkedhashset.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+        linkedhashset.forEach(e -> System.out.println(e));
+        LinkedHashSet<Object> linkedHashSet1 = new LinkedHashSet<>();
+        linkedHashSet1.add(3);
+        linkedHashSet1.add(4);
+        linkedhashset.addAll(linkedHashSet1);
+        linkedhashset.forEach(e -> System.out.println(e));
+        LinkedHashSet<Object> lks = new LinkedHashSet<>();
+
+        lks=linkedhashset.stream().filter(e -> e instanceof Number).collect(Collectors.toCollection(LinkedHashSet::new));
+        linkedhashset.forEach(e -> System.out.println(e));
+        LinkedHashSet<Integer> lks1 = new LinkedHashSet<>();
+        lks1.add(1);
+        lks1.add(2);
+        lks1.add(3);
+        lks1.add(4);
+        lks1.add(5);
+        System.out.println("------------------------------------ff--------------------------");
+
+        lks1.stream().map( e ->  e*2).forEach(e -> System.out.println(e));
+        System.out.println("------------------------------------ff--------------------------");
+        /*
+         la difference entre stream et parallele stream
+         c que stram execute séquentiellement les élements du collection du gauche à droite un par un
+         par contre parallelStream les threads execute en parallele les élements , l'ordre de l'affichage
+         n'est pas GARANTI
+         */
+        lks1.parallelStream().map( e ->  e*2).forEach(e -> System.out.println(e));
 
     }
 
