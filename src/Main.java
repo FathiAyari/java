@@ -9,7 +9,17 @@ public class Main {
     public int myAge(long dateOfBirth){
         return (int) (Year.now().getValue()-dateOfBirth);
     }
-    public static void main(String[] args) {
+// this part belongs to exceptions bloc
+
+    public static  void buy(double balance,double price) throws NoMoneyException {
+        // you can throw multiple exceptions NoMoneyException,...
+        if(balance-price<0){
+            throw new NoMoneyException();
+        }else
+        System.out.println("the new balance  is : "+(balance-price));
+    }
+
+    public static void main(String[] args)  {
 
     /************************************ Data Types ****************************************/
     //Primitive data type :
@@ -91,7 +101,25 @@ public class Main {
             }
             // Code to be executed
         }
+        /************************************ Exceptions handling ****************************************/
+        int[] values={1,2,3,4};
+        try {
+           // System.out.println(values[6]);
+           // System.out.println(values.length/0);
+        }catch (ArrayIndexOutOfBoundsException|ArithmeticException e){
 
+        e.printStackTrace();
+        }finally {
+            System.out.println("Finally is used to Ensure that resources like files, database connections, or network connections are properly closed or released.");
+        }
+        // Custom exception
+
+
+        try{
+            buy(100,400);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
