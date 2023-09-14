@@ -1067,8 +1067,82 @@ numbers.forEach(e-> System.out.println(e));*/
          c que stram execute séquentiellement les élements du collection du gauche à droite un par un
          par contre parallelStream les threads execute en parallele les élements , l'ordre de l'affichage
          n'est pas GARANTI
-         */
+
         lks1.parallelStream().map( e ->  e*2).forEach(e -> System.out.println(e));
+var lks2= new LinkedList<Integer>();
+        lks2.add(1);
+        lks2.add(2);
+        lks2.add(3);
+        lks2.add(4);
+        lks2.add(5);
+        System.out.println("------------ --------------- ------------------ -------------");
+        var lks3= new LinkedList<Integer>();
+        lks3=lks2.stream().filter(e -> e%2==0).collect(Collectors.toCollection(LinkedList::new));
+lks2.forEach(e-> System.out.println(e));
+  */
+//-------------------- TreeSet---------------------------------
+        /*
+        Création du TreeSet et ajout d'éléments :
+
+Créez un TreeSet qui stockera des noms de personnes.
+Ajoutez plusieurs noms au TreeSet en utilisant la méthode add.
+         */
+        TreeSet<String> treeset= new TreeSet<>();
+        treeset.add("Mohamed");
+        treeset.add("Ahmed");
+        treeset.add("Ali");
+        treeset.add("Fathi");
+        treeset.forEach(e -> System.out.println(e));
+       /* System.out.println("------------ --------------- ------------------ -------------");
+        Spliterator<String> splt= treeset.spliterator();
+        splt.forEachRemaining(e-> System.out.println(e));
+        System.out.println("------------ --------------- ------------------ -------------");
+        treeset.stream().forEach(e -> System.out.println(e));
+        System.out.println("------------ --------------- ------------------ -------------");
+            treeset.parallelStream().forEach(e-> System.out.println(e));*/
+        TreeSet<String> treeset2 = new TreeSet<>();
+        treeset2.add("Salah");
+        treeset2.add("Akrem");
+        treeset.addAll(treeset2);
+        System.out.println("------------ --------------- ------------------ -------------");
+        treeset.forEach(e -> System.out.println(e));
+        System.out.println("------------ --------------- ------------------ -------------");
+        TreeSet<String> treeset3 = new TreeSet<>();
+        treeset3.add("Salah");
+        treeset3.add("Akrem");
+        treeset3.add("Mohamed");
+        treeset3.add("Fathi");
+        System.out.println("------------ ------------headSet(E toElement)--- ------------------ -------------");
+
+        System.out.println(treeset3.headSet("Bilel"));
+        System.out.println("------------ ------------descendingSet ordre decroissant-- ------------------ -------------");
+TreeSet<Integer> anniversaire = new TreeSet<>();
+anniversaire.add(1999);
+anniversaire.add(1997);
+anniversaire.add(1990);
+anniversaire.add(1900);
+        System.out.println("------------ ------------pollfirst retourne l'element et le supprime-- ------------------ -------------");
+        System.out.println("------------ ------------first retourne l'element sans le supprimer-- ------------------ -------------");
+
+        System.out.println(anniversaire.first());
+        System.out.println(anniversaire.last());
+        System.out.println(anniversaire.pollLast());
+        System.out.println(anniversaire.descendingSet());
+        anniversaire.parallelStream().map(e -> e*2).forEach(e -> System.out.println(e));
+
+        System.out.println("------------ ------------ceiling-- ------------------ -------------");
+
+        System.out.println(treeset3.ceiling("Akrem"));
+TreeSet<Integer> treesetNumber= new TreeSet<>();
+treesetNumber.add(1);
+treesetNumber.add(2);
+treesetNumber.add(3);
+treesetNumber.add(5);
+        System.out.println(treesetNumber.ceiling(4));
+        System.out.println(treesetNumber.floor(4));
+
+
+
 
     }
 
