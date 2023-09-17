@@ -2,6 +2,7 @@ import javax.management.AttributeList;
 import java.sql.Array;
 import java.sql.SQLOutput;
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
@@ -989,12 +990,12 @@ numbers.forEach(e-> System.out.println(e));*/
         System.out.println(hashset1.contains(hashset2));
         System.out.println(hashset2.contains(hashset1));
         Spliterator<Integer> spliterator = hashset1.spliterator();
-        spliterator.forEachRemaining(e -> System.out.println(e));
+        spliterator.forEachRemaining(System.out::println);
         hashset1.removeIf(e -> e % 2 == 0);
         System.out.println("----------");
         System.out.println("----------");
         Spliterator<Integer> spliterator1 = hashset1.spliterator();
-        spliterator1.forEachRemaining(e -> System.out.println(e));
+        spliterator1.forEachRemaining(System.out::println);
         System.out.println("----------");
         System.out.println("----------");
         Set<Integer> newSet = hashset1.stream().map(e ->
@@ -1189,7 +1190,165 @@ Vector<String> vectorr= new Vector<>();
         tre.add(3);
         tre.forEach(e -> System.out.println(e));
 
+        //Exercice d'application pour HashMap
+        HashMap<Integer,String> hashmap= new HashMap<>();
+// ajouter des clé, valeurs au hashmap
+        for (int i=0; i< 4;i++){
+            hashmap.put(i,"Red");
+        }
+        // afficher la hashmap
+        for (Map.Entry<Integer,String> entry : hashmap.entrySet() ){
+            System.out.println(entry.getKey()+" "+ entry.getValue());
+        }
+        //afficher les valeurs de hashmap avec la méthode get(key)
+        for (int i=0; i< 4;i++) {
+            System.out.println(hashmap.get(i));
+        }
+        // supprimer une paire clé valeur à partir de son clé
+        hashmap.remove(1);
+        for (Map.Entry<Integer,String> entry : hashmap.entrySet()){
+            System.out.println(entry.getKey() +" "+ entry.getValue());
+        }
+        // vérifier si le hashmap contient un clé ou une valeur donnée
+        System.out.println(hashmap.containsKey(2));
+        System.out.println(hashmap.containsValue("Red"));
+
+        // Vérifier la taille , si vide , et on peut vider le hashmap
+        System.out.println(hashmap.size());
+        System.out.println(hashmap.isEmpty());
+        /*hashmap.clear();
+        for (Map.Entry<Integer,String> entry : hashmap.entrySet()){
+            System.out.println(entry.getKey()+" "+ entry.getValue());
+        }*/
+        // obtenir la liste des valeurs du hashmap
+        Collection<String> values=  hashmap.values();
+        for (String item :values){
+            System.out.println(item);
+        }
+        // cette approche est utilisé si on veut savoir si les clé du hashmap sont distinct ou pas
+        HashSet<Integer> valeurs= new HashSet<>(hashmap.keySet());
+        valeurs.forEach( System.out::println);
+        // obtenir un ensemble de clé valeur (pour assurer l'unicité des clé)
+        Set<Entry<Integer, String>> ensemblePaires = hashmap.entrySet();
+        ensemblePaires.forEach(e -> {
+            System.out.println(e.getKey());
+            System.out.println(e.getValue());
+        });
+        // utiliser putAll pour concatener deux hashset
+        HashMap<Integer,String> hashmap2= new HashMap<>();
+        for (int i=4; i< 7;i++){
+            hashmap.put(i,"Red");
+        }
+        hashmap.putAll(hashmap2);
+        for (Map.Entry<Integer,String> entry : hashmap.entrySet()){
+            System.out.println(entry.getKey()+" "+ entry.getValue());
+        }
+        // J'ai crée un itérateur de type Entry<Integer,String> pour parcourir les entryset
+        // (les paires clé valeurs) du hashmap et j'ai utilisé la méthode remplace
+        // pour remplacer les valeur si condition
+        Iterator<Entry<Integer,String>> it= hashmap.entrySet().iterator();
+        while (it.hasNext()){
+            Entry<Integer,String> obj= it.next();
+            if (obj.getKey()%2==0){
+                hashmap.replace(obj.getKey(),"Blue");
+            }else {
+                hashmap.replace(obj.getKey(),"white","Black");
+            }
+            for (Map.Entry<Integer,String> entry : hashmap.entrySet()){
+                System.out.println(entry.getKey()+" "+ entry.getValue());
+            }
+        }
+        // on peut créer un itérateur juste pour les clés du hashmap et aussi on peut créer pour juste les valeurs
+
+        Iterator<Integer> itt= hashmap.keySet().iterator();
+        System.out.println("----------------------------------------------------");
+        HashMap<Integer,Integer> hashMap= new HashMap<>();
+        hashMap.put(1,1);
+        hashMap.put(2,1);
+        hashMap.put(3,1);
+        Iterator<Entry<Integer,Integer>> i= hashMap.entrySet().iterator();
+        while (i.hasNext()){
+            int key=i.next().getKey();
+            hashMap.compute(key,(cle,value) -> value*2);
+        }
+        for (Map.Entry<Integer,Integer> entry : hashMap.entrySet()){
+            System.out.println(entry.getKey()+" "+ entry.getValue());
+        }
+       // si la clé 4 n'existe pas , il va la créer et affecte la valeur , clé*2
+       hashMap.computeIfAbsent(4,e->e*2);
+        for (Entry<Integer,Integer> entry : hashMap.entrySet()){
+            System.out.println(entry.getKey()+" "+ entry.getValue());
+        }
+        System.out.println("------------------------------------------------------");
+        // si la clé 3 est présente , il va prendre la valeur actuelle du 3 et la multiplier *3
+        hashMap.computeIfPresent(3,(key,value)->value*3);
+        for (Map.Entry<Integer,Integer> entry : hashMap.entrySet()){
+            System.out.println(entry.getKey()+" "+ entry.getValue());
+        }
+        System.out.println("------------------------------------------------------");
+
+        Iterator<Entry<Integer,Integer>> ito= hashMap.entrySet().iterator();
+        while (ito.hasNext()){
+            Map.Entry<Integer,Integer> obj= ito.next();
+            if(obj.getKey()%2==0){
+                // pour faire une opération sur la valeur actuelle
+                hashMap.computeIfPresent(obj.getKey(), (cle,oldvalue)->oldvalue*2);
+                //si on va attribuer directement une nouvelle valeur on peut utiliser replace
+
+            }
+
+        }
+        hashMap.putIfAbsent(5,5);
+        for (Entry<Integer,Integer> entry : hashMap.entrySet()){
+            System.out.println(entry.getKey()+" "+ entry.getValue());
+        }
+        hashMap.remove(3);
+        for(Entry<Integer,Integer> entry : hashMap.entrySet()){
+            System.out.println(entry.getKey() +" "+ entry.getValue());
+        }
+        System.out.println("-------------------------------------------");
+        hashMap.replaceAll((cle,valeur)->valeur*100);
+        for(Entry<Integer,Integer> entry : hashMap.entrySet()){
+            System.out.println(entry.getKey() +" "+ entry.getValue());
+        }
+
+        hashMap.merge(5,500,(cle,valeur)->100);
+        for(Entry<Integer,Integer> entry : hashMap.entrySet()){
+            System.out.println(entry.getKey() +" "+ entry.getValue());
+        }
+        System.out.println("-------------------------------------------");
+        hashMap.forEach((cle,valeur)-> System.out.println(cle +" "+ valeur));
+        hashMap.put(3,3);
+        System.out.println("-------------------------------------------");
+        hashMap.forEach((cle,valeur)-> System.out.println(cle +" "+ valeur));
+        System.out.println("-------------------------------------------");
+hashMap.entrySet().stream().sorted();
+        hashMap.forEach((cle,valeur)-> System.out.println(cle +" "+ valeur));
+
+
+        hashMap.entrySet().forEach((entry)-> System.out.println(entry.getKey()+" "+ entry.getValue()));
+        Map<Integer, Integer> nouvelleHashMap = hashMap.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Entry::getKey, // Utilisez la clé d'origine
+                        entry -> entry.getValue() * 2 // Multipliez la valeur par 2
+                ));
+nouvelleHashMap.entrySet().forEach(entry -> System.out.println(entry.getKey()+" "+entry.getValue()));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
 
 
 
