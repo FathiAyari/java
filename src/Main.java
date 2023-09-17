@@ -7,6 +7,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
 import java.util.function.IntBinaryOperator;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.management.Attribute;
 public class Main {
 
@@ -1100,7 +1101,7 @@ Ajoutez plusieurs noms au TreeSet en utilisant la méthode add.
         treeset.stream().forEach(e -> System.out.println(e));
         System.out.println("------------ --------------- ------------------ -------------");
             treeset.parallelStream().forEach(e-> System.out.println(e));*/
-        TreeSet<String> treeset2 = new TreeSet<>();
+       /* TreeSet<String> treeset2 = new TreeSet<>();
         treeset2.add("Salah");
         treeset2.add("Akrem");
         treeset.addAll(treeset2);
@@ -1141,8 +1142,52 @@ treesetNumber.add(5);
         System.out.println(treesetNumber.ceiling(4));
         System.out.println(treesetNumber.floor(4));
 
+*/
+        ArrayList <Integer> test=new ArrayList<>();
+        test.add(1);
+        test.add(2);
+
+        System.out.println("-----------------------------------------------");
 
 
+       test.stream().map(e -> e*2).forEach(e -> System.out.println(e));
+        test.forEach(e -> System.out.println(e));
+
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        Stream<Integer> squaredNumbersStream = numbers.stream()
+                .map(n -> n * n);
+        squaredNumbersStream.forEach(e -> System.out.println(e));
+
+       /* test.parallelStream().map(e -> e*2);
+        test.forEach(e -> System.out.println(e));*/
+HashSet<Person> person = new HashSet<>();
+Person p1= new Person(1,"mohamed");
+Person p2= new Person(1,"moahmde");
+person.add(p1);
+person.add(p2);
+person.removeIf(e -> e.name.equals("moahmde"));
+
+        System.out.println(p1.hashCode());
+        System.out.println(p2.hashCode());
+
+person.forEach(e -> System.out.println(e.toString()));
+Vector<String> vectorr= new Vector<>();
+        TreeSet<Person> treeSet = new TreeSet<Person>(new PersonComparator());
+       // treeSet.add(new Person(30,"Mohamed"));
+        treeSet.add(new Person(40,"ahmed"));
+        treeSet.add(new Person(50,"fathi"));
+        treeSet.add(new Person(60,"fathi"));
+
+        // Les éléments seront triés en fonction de votre comparateur
+        treeSet.forEach(e -> System.out.println(e.toString()));
+
+
+
+        TreeSet<Integer> tre = new TreeSet<>();
+        tre.add(1);
+        tre.add(2);
+        tre.add(3);
+        tre.forEach(e -> System.out.println(e));
 
     }
 
